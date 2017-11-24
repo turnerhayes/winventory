@@ -1,0 +1,36 @@
+.wic_item-grid {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.wic_item-grid-item {
+	width: 12em;
+	height: 12em;
+	margin: 1em;
+	position: relative;
+	text-align: center;
+}
+
+.wic_item-grid .wic_item-grid-expand-image-button,
+.wic_item-grid .wic_item-grid-expand-image-button:hover
+{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background-color: white;
+}
+
+.wic_item-grid-item img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.wic_item-grid-expanded-image {
+	width: 80vw;
+}
+
+.wic_item-grid-expanded-image img {
+	max-width: 100%;
+	max-height: 100%;
+}
