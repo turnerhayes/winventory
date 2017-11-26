@@ -27,6 +27,8 @@ app.use("/static", express.static(path.join(buildDir, "static")), throw404);
 
 app.use("/api", apiRoutes, throw404);
 
+app.use("/service-worker.js", (req, res) => res.sendFile(path.join(buildDir, "service-worker.js")));
+
 app.use("/", (req, res) => res.sendFile(path.join(buildDir, "index.html")));
 
 app.use(throw404);

@@ -11,10 +11,30 @@ const schema = new mongoose.Schema({
 	imageMimeType: {
 		type: String
 	},
+	imageLastModified: {
+		type: Date,
+		default: Date.now,
+		set: (newVal) => {
+			if (newVal !== this.imageLastModified) {
+				this._dateModified = true;
+			}
+
+			this.imageLastModified = newVal;
+		}
+	},
 	ranks: {
 		type: Object,
 		default: {}
 	},
+});
+
+schema.pre("save", (next) => {
+	if (this._dateModified) {
+		this.imageLastModified = Date.now();
+		this._dateModified = false;
+	}
+
+	next();
 });
 
 module.exports = mongoose.model("Item", schema);

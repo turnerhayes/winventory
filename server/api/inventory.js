@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const HTTPStatusCodes = require("http-status-codes");
+const etag = require("etag");
 const assert = require("assert");
 const ItemModel = require("../db/models/item");
 
@@ -54,7 +55,18 @@ router.route("/:id/image")
 	.get(
 		(req, res, next) => {
 			ItemModel.findById(req.params.id).then(
-				(item) => res.type(item.imageMimeType || "jpeg").send(item.image)
+				(item) => {
+					res.type(item.imageMimeType || "jpeg")
+						.set("Last-Modified", item.imageLastModified)
+						.set("ETag", etag(item.image));
+
+					if (req.fresh) {
+						res.status(HTTPStatusCodes.NOT_MODIFIED).send();
+					}
+					else {
+						res.status(HTTPStatusCodes.OK).send(item.image);
+					}
+				}
 			).catch(next);
 		}
 	);
