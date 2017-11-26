@@ -68,7 +68,7 @@
     "start:prod": "node server/bin/www.js",
     "start:dev": "DEBUG=winv:* nodemon ./server/bin/www.js",
     "start:static": "node scripts/start.js",
-    "postinstall": "node scripts/s=postinstall.js",
+    "postinstall": "node scripts/postinstall.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint src server"
