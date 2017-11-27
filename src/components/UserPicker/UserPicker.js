@@ -1,16 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ImmutablePropTypes from "react-immutable-proptypes";
-import Avatar from "material-ui/Avatar";
+import UserAvatar from "../UserAvatar";
 import Button from "material-ui/Button";
 import Popover from "material-ui/Popover";
 import List, { ListItem, ListItemText } from "material-ui/List";
-
-const MAX_AVATAR_STRING_LENGTH = 2;
-
-function getAvatarContent(name) {
-	return name.substring(0, MAX_AVATAR_STRING_LENGTH);
-}
 
 export default class UserPicker extends React.PureComponent {
 	static propTypes = {
@@ -40,9 +34,11 @@ export default class UserPicker extends React.PureComponent {
 				className="wic_user-picker"
 			>
 				<Button>
-					<Avatar
+					<UserAvatar
+						name={currentUser}
+						title={`Current User (${currentUser})`}
 						onClick={(event) => this.setState({ popoverAnchorEl: event.currentTarget, isPopoverOpen: true })}
-					>{getAvatarContent(currentUser)}</Avatar>
+					/>
 				</Button>
 				<Popover
 					open={this.state.isPopoverOpen}
@@ -60,8 +56,9 @@ export default class UserPicker extends React.PureComponent {
 										button
 										onClick={() => this.handleUserSelect({ user })}
 									>
-										<Avatar
-										>{getAvatarContent(user)}</Avatar>
+										<UserAvatar
+											name={user}
+										/>
 										<ListItemText
 											primary={user}
 										/>

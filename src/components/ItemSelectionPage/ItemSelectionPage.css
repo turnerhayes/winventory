@@ -1,0 +1,11 @@
+.wic_item-selection-page {
+	margin-top: 4em;
+}
+
+.wic_item-selection-page .wic_item-selection-page__results-link {
+	color: white;
+}
+
+.wic_item-selection-page .wic_user-picker {
+	margin-left: auto;
+}

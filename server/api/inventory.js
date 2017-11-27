@@ -11,6 +11,8 @@ function prepareItem(item) {
 	item = item.toObject();
 	delete item.image;
 	delete item.__v;
+	delete item.imageLastModified;
+	delete item.imageMimeType;
 	item.id = item._id;
 	delete item._id;
 	item.ranks = item.ranks || {};
